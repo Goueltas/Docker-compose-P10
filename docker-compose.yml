@@ -1,0 +1,22 @@
+version: "3"
+services:
+  wordpress:
+    image: goueltas/wordpress-cli:5.7
+    container_name: wp-srv
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=
+      - WORDPRESS_DB_USER=
+      - WORDPRESS_DB_PASSWORD=
+      - WORDPRESS_DB_NAME=
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - app-network
+volumes:
+  wordpress:
+networks:
+  app-network:
+    driver: bridge
